@@ -16,11 +16,11 @@ logoutBtn.addEventListener("click", function () {
     setTimeout(() => window.location = "index.html", 1000);
 });
 
-// ======================= KEYS ============================
+// //////////////////////////////////////////////////
 const productsInLocalStorageKey = "AddedProductItems";
 const favoritesKey = "favoriteProducts";
 
-// ======================= DOM ELEMENTS ============================
+////////////////////////////////////////////////////
 let addItem = document.querySelector(".product-added");
 let loved = document.querySelector(".loved");
 let icon = document.querySelector(".shopping_cart i");
@@ -34,11 +34,10 @@ if (!cartProductDiv) {
     card_div.appendChild(cartProductDiv);
 }
 
-// ======================= LOCAL STORAGE DATA ============================
+
 let addedItems = JSON.parse(localStorage.getItem(productsInLocalStorageKey)) || [];
 let favoriteItems = JSON.parse(localStorage.getItem(favoritesKey)) || [];
 
-// ======================= TOTAL PRICE UTILS ============================
 function ensureCartTotalDiv() {
     let totalDiv = document.getElementById("cart_total");
     
@@ -77,7 +76,6 @@ function updateCartTotal() {
     totalDiv.innerText = "Total Price: " + total + " $";
 }
 
-// ======================= HELPERS ============================
 function findCartItem(id) {
     id = parseInt(id);
     return addedItems.find(item => item.id === id);
@@ -88,7 +86,6 @@ function updateBadge() {
     badge.innerText = total;
 }
 
-// ======================= CART OPERATIONS ============================
 function removeFromCart(id) {
     id = parseInt(id);
     addedItems = addedItems.filter(item => item.id !== id);
@@ -117,7 +114,6 @@ function changeQty(id, amount) {
     updateCartTotal();
 }
 
-// ======================= DRAW CART PAGE ============================
 function drawCardProduct(products) {
     if (products.length === 0) {
         updateCartTotal();
@@ -155,8 +151,6 @@ function drawCardProduct(products) {
 
     updateCartTotal();
 }
-
-// ======================= FAVORITES ============================
 function drawFavoriteProduct(products) {
     if (products.length === 0) {
         return;
@@ -192,7 +186,6 @@ function enableFavoriteRemoval() {
     });
 }
 
-// ======================= CART DROPDOWN ============================
 function addToCartCount() {
     if (addedItems.length === 0) {
         updateCartTotal();
@@ -224,13 +217,11 @@ function addToCartCount() {
     updateCartTotal();
 }
 
-// ======================= CART DROPDOWN TOGGLE ============================
 icon.addEventListener("click", function () {
     card_div.style.display = card_div.style.display === "block" ? "none" : "block";
     if (card_div.style.display === "block") addToCartCount();
 });
 
-// ======================= INITIAL LOAD ============================
 updateBadge();
 addToCartCount();
 drawCardProduct(addedItems);
