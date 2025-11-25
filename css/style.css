@@ -459,10 +459,13 @@ input[type="checkbox"] {
     font-weight: 600;
     text-align: center;
 }
+.fav-container{
+    position: relative;
+}
 
 .fav-container h2{
       position: absolute;
-      top: 450px;
+     top: 70px;
       left:555px;
       padding: 10px 0;
       border-bottom: 2px solid red;
