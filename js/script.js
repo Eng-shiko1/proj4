@@ -234,7 +234,6 @@ function addToCartCount() {
 
     cartProductDiv.innerHTML = cartContent;
 
-    // Attach listeners to the dynamically created increase/decrease buttons in the dropdown
     cartProductDiv.querySelectorAll(".increase").forEach(btn => {
         btn.addEventListener("click", () => changeQty(btn.dataset.id, 1));
     });
@@ -249,7 +248,6 @@ icon.addEventListener("click", function () {
         card_div.style.display = "none"
     }else{
         card_div.style.display = "block"
-        // Ensure dropdown quantity buttons are active when shown
         addToCartCount(); 
     }
 });
@@ -264,8 +262,7 @@ function updateProductButtons() {
 
         let addBtn = item.querySelector(".add_to_cart");
         let removeBtn = item.querySelector(".remove_from_cart");
-        
-        // Safety check: ensure buttons exist before adding listeners
+    
         if (!addBtn || !removeBtn) return; 
 
         let inCart = findCartItem(parseInt(id));
@@ -297,11 +294,10 @@ function isFavorite(id) {
 }
 
 function updateHeartColors() {
-    // Re-select hearts after a potential re-render, though add_item is only called once here
+
     let currentHearts = document.querySelectorAll(".heart");
 
     currentHearts.forEach(heart => {
-        // Use the data-id from the parent element
         let parentItem = heart.closest(".product_item");
         if (!parentItem) return;
         let id = parseInt(parentItem.dataset.id);
@@ -330,12 +326,10 @@ function toggleFavorite(id) {
 }
 
 function enableHeartActions() {
-    // Re-select hearts after products are added
+    
     let currentHearts = document.querySelectorAll(".heart");
 
     currentHearts.forEach(heart => {
-        // Only add listener if it hasn't been added (or ensure previous listeners are removed/replaced)
-        // Since we call this once at the end, adding a simple click listener is fine.
         heart.addEventListener("click", function () {
             let id = heart.closest(".product_item").dataset.id;
             toggleFavorite(id);
@@ -345,7 +339,6 @@ function enableHeartActions() {
 
 
 // ////////////////////////////////////////////////////////////////
-// Initial setup on page load
 updateBadge();
 addToCartCount();
 updateProductButtons();
